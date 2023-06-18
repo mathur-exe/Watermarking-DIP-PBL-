@@ -11,18 +11,21 @@ class Embedder:
         self.watermark_image_path = ""
         self.watermark_image = None
         self.watermarked_image = None
+
     def select_original_image(self):
-        path = filedialog.askopenfilename(filetypes=[("Image File", ".jpg .png")])
+        path = filedialog.askopenfilename()
         if path:
             self.original_image_path = path
             self.original_image = cv2.imread(path)
-            cv2.imshow("Original Image", self.original_image)
+            # cv2.imshow("Original Image", self.original_image)
+
     def select_watermark_image(self):
-        path = filedialog.askopenfilename(filetypes=[("Image File", ".jpg .png")])
+        path = filedialog.askopenfilename()
         if path:
             self.watermark_image_path = path
             self.watermark_image = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
-            cv2.imshow("Watermark Image", self.watermark_image)
+            # cv2.imshow("Watermark Image", self.watermark_image)
+
     def embed_watermark(self):
         if self.original_image is None or self.watermark_image is None:
             return
@@ -50,6 +53,7 @@ class Embedder:
 
         # Display watermarked image
         cv2.imshow("Watermarked Image", self.watermarked_image)
+
     def run(self):
         root = tk.Tk()
         root.title("Watermark Embedder")
